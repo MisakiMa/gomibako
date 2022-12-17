@@ -15,5 +15,5 @@ cd api_server && python3 main.py
 ### Frontend
 
 ```
-npm run dev
+cd front && npm run dev
 ```
