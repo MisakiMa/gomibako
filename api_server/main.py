@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, send_file
 from flask_cors import CORS
 import threading
 from serial_test import read_distance_cm
+from take_picture import take_picture
 from logging import NullHandler
 
 
@@ -22,6 +23,7 @@ def update_dist_cm():
 def tm_callback():
     global tm
     update_dist_cm()
+    take_picture("images/image.png")
     tm.cancel()
     del tm
     tm = NullHandler
@@ -38,6 +40,11 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/")
 def hello_world():
     return {"distance": dist_cm}
+
+
+@app.route("/image/<image_file>")
+def serve_image(image_file):
+    return send_file(f"/image/{image_file}")
 
 
 if __name__ == "__main__":
