@@ -42,9 +42,9 @@ def hello_world():
     return {"distance": dist_cm}
 
 
-@app.route("/image/<image_file>")
+@app.route("/images/<image_file>")
 def serve_image(image_file):
-    return send_file(f"/image/{image_file}")
+    return send_file(f"images/{image_file}")
 
 
 if __name__ == "__main__":

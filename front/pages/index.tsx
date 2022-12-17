@@ -1,7 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import ComponentSample from './ComponentSample'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import ComponentSample from "./ComponentSample";
+import { CurrentImage } from "./CurrentImage";
 
 const Home: NextPage = () => {
   return (
@@ -18,9 +19,10 @@ const Home: NextPage = () => {
             Next.js! nextだよ
           </a> */}
         </h1>
-        
+
         <ComponentSample></ComponentSample>
-      
+
+        <CurrentImage />
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
@@ -35,7 +37,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
