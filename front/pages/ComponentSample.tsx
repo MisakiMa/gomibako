@@ -6,6 +6,11 @@ export const mainStationState = atom({
   default: 0
 })
 
+export const mainStationDistance = atom({
+  key: 'mainStationDistance',
+  default: 40
+})
+
 const fetchData = async () => {
   const res = await fetch("http://127.0.0.1:3500/");
   const data = await res.json()
@@ -16,6 +21,7 @@ export default function ComponentSample() {
   const [distance, setDistance] = useState<number>()
 
   const [mainStation, _] = useRecoilState(mainStationState)
+  const [_distance, setMainDistance] = useRecoilState(mainStationDistance)
   useEffect(() => {
       const log = async ()  => {
         switch(mainStation) {
@@ -23,14 +29,17 @@ export default function ComponentSample() {
             setCount(count => count + 1)
             const data = await fetchData()
             setDistance(data.distance)
+            setMainDistance(data.distance)
             break
           case 1:
-            setDistance(12)
+            setDistance(20)
             break
           case 2:
-            setDistance(30)
+            console.log("2 24")
+            setDistance(24)
+            break
           default:
-            setDistance(40)
+            setDistance(20)
             break
         }
       }

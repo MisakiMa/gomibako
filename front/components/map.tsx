@@ -1,25 +1,51 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import L from 'leaflet';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { useRecoilState } from "recoil";
-import { mainStationState } from "../pages/ComponentSample";
+import { mainStationDistance, mainStationState } from "../pages/ComponentSample";
 
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconUrl: markerIcon.src,
-    iconRetinaUrl: markerIcon2x.src,
-    shadowUrl: markerShadow.src,
-})
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import L from "leaflet";
 
+const redIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const blueIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const greenIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
 
 const Map = () => {
   
   const [mainStation, setMainStation] = useRecoilState(mainStationState)  
+  const [distance, setMainDistance] = useRecoilState(mainStationDistance)
 
   return (
     <MapContainer
@@ -34,6 +60,7 @@ const Map = () => {
       />
       <Marker 
         position={[35.946404, 136.185362]}
+        icon={distance <= 15 ? redIcon: greenIcon}
         eventHandlers={{
           click: (e) => {
             console.log('maker click 0', e)
@@ -46,6 +73,7 @@ const Map = () => {
       </Marker>
       <Marker 
         position={[35.943554, 136.200377]}
+        icon={greenIcon}
         eventHandlers={{
           click: (e) => {
             console.log('maker click 1', e)
@@ -58,9 +86,10 @@ const Map = () => {
       </Marker>
       <Marker 
         position={[35.950103, 136.181823]}
+        icon={greenIcon}
         eventHandlers={{
           click: (e) => {
-            console.log('maker click', e)
+            console.log('maker click 2', e)
             setMainStation(2)
           },
         }}>
