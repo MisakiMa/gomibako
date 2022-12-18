@@ -1,10 +1,27 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import ComponentSample from "./ComponentSample";
+import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import Image from 'next/image'
+import React from 'react'
+import { useRecoilState } from 'recoil'
+import ComponentSample, { mainStationState } from './ComponentSample'
 import { CurrentImage } from "./CurrentImage";
 
+const MapArea = () => {
+  const Map = React.useMemo(
+    () =>
+      dynamic(() => import("../components/map"), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false,
+      }),
+    []
+  );
+  return <Map />;
+}
+
 const Home: NextPage = () => {
+  const [mainStation, setMainStation] = useRecoilState(mainStationState)  
+  
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -21,8 +38,10 @@ const Home: NextPage = () => {
         </h1>
 
         <ComponentSample></ComponentSample>
-
-        <CurrentImage />
+        { mainStation == 0 ? (<CurrentImage />) : (<>画像を取得できませんでした</>)}
+        
+        <br></br>
+        <MapArea></MapArea>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
