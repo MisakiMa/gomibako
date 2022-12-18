@@ -27,8 +27,11 @@ export const CurrentImage: React.FC = () => {
   });
 
   return (
-    <div>
-      <img src={`${imageSrc.imageSrc}?${imageSrc.imageHash}`} />
-    </div>
+    <>
+      <img
+        src={`${imageSrc.imageSrc}?${imageSrc.imageHash}`}
+        className="object-contain self-center justify-self-center w-4/5 h-64"
+      />
+    </>
   );
 };
