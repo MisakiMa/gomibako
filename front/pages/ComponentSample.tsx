@@ -30,7 +30,7 @@ export default function ComponentSample() {
           case 2:
             setDistance(30)
           default:
-            setDistance(15)
+            setDistance(40)
             break
         }
       }
@@ -41,10 +41,9 @@ export default function ComponentSample() {
 
 
   return (
-    <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-      <div className="text-6xl font-bold mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
-        {distance == null ? (<>距離が測れていません</>) : (<>距離: {distance}cm</>) }
-        {(distance ?? 0) <= 21 ? ((distance ?? 0) <= 15 ?  ((distance ?? 0) <= 12 ? <>危険な状態です</> : <>多いです</>) :  <>普通です</>) :(<>少ないです</>) }
+    <div className="mt-6 flex max-w-5xl flex-wrap items-center justify-around sm:w-full">
+      <div className="text-6xl font-bold mt-6 w-auto rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
+        {(distance ?? 0) <= 21 ? ((distance ?? 0) <= 15 ?  ((distance ?? 0) <= 12 ? <div className="text-rose-800">危険な状態です</div> : <div className="text-rose-400">多いです</div>) :  <div className="text-emerald-500">普通です</div>) :(<div className="text-emerald-500">少ないです</div>) }
       </div>
     </div>
 )

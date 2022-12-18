@@ -38,8 +38,9 @@ const Home: NextPage = () => {
         </h1>
 
         <ComponentSample></ComponentSample>
-        { mainStation == 0 ? (<CurrentImage />) : (<>画像を取得できませんでした</>)}
-        
+        <div className="grid w-4/5 h-96 justify-center content-center">
+          { mainStation == 0 ? (<CurrentImage />) : (<>画像を取得できませんでした</>)}
+        </div>
         <br></br>
         <MapArea></MapArea>
       </main>
