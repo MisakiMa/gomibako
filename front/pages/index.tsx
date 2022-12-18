@@ -25,11 +25,11 @@ const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Create Next App</title>
+        <title>ゴミステーションの状況</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+      <main className="flex w-full flex-1 mt-16 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
           ゴミステーションの状況
           {/* <a className="text-blue-600" href="https://nextjs.org">
@@ -38,11 +38,13 @@ const Home: NextPage = () => {
         </h1>
 
         <ComponentSample></ComponentSample>
-        <div className="grid w-4/5 h-96 justify-center content-center">
+        <div className="grid w-4/5 h-64 justify-center content-center">
           { mainStation == 0 ? (<CurrentImage />) : (<>画像を取得できませんでした</>)}
         </div>
         <br></br>
-        <MapArea></MapArea>
+        <div className="w-4/5 h-40 justify-center content-center">
+          <MapArea></MapArea>
+        </div>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
